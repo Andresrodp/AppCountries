@@ -1,0 +1,27 @@
+.Pais {
+    border-radius: 1.5rem;
+    background-color: antiquewhite;
+    width: 25%;
+    height: 25%;
+    border: 1rem black hard;
+    display: inline-block;
+    align-items: flex-end;
+    margin: 2px;
+
+}
+.Flag{
+    width: 12rem;
+    height: 8rem;
+}
+
+.Nombre{
+    color:darkblue;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.Continente{
+    color:blue;
+    font-weight: 900;
+    font-size: medium;
+}

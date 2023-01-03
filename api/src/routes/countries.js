@@ -8,7 +8,7 @@ RouteCountries.get('/', async (req, res)=>{
     try {
         const {name}=req.query;
         if(!name){
-            const allCountries = await Countries.findAll({attributes:['img_flag', 'name', 'continents']});
+            const allCountries = await Countries.findAll();
             console.log(allCountries.length);
             if(!allCountries.length){
                 const appiData = await axios.get('https://restcountries.com/v3.1/all')
@@ -26,7 +26,7 @@ RouteCountries.get('/', async (req, res)=>{
                     }
                 })
                 await Countries.bulkCreate(appiCountries);
-                const result2 = await Countries.findAll({attributes:['img_flag', 'name', 'continents']});
+                const result2 = await Countries.findAll();
                 res.status(200).json(result2);
             }else{
                 res.status(200).json(allCountries);
@@ -40,7 +40,7 @@ RouteCountries.get('/', async (req, res)=>{
             console.log(arraysearch);
         let results3 = [];
             for (let i = 0; i < arraysearch.length; i++){
-                let countryb = await Countries.findOne({where: {ID: arraysearch[i].ID}, attributes:['img_flag', 'name', 'continents']})
+                let countryb = await Countries.findOne({where: {ID: arraysearch[i].ID}})
                 results3.push(countryb);
             }
             res.status(200).json(results3)

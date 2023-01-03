@@ -13,7 +13,7 @@ module.exports = (sequelize) =>{
             allowNull: false
         },
         difficulty: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false
         },
         duration: {
@@ -21,7 +21,7 @@ module.exports = (sequelize) =>{
             allowNull: true
         },
         season: {
-            type: DataTypes.ARRAY(DataTypes.STRING),
+            type: DataTypes.STRING,
             allowNull: false
         }
     }, {timestamps: false})
