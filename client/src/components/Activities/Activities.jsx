@@ -5,16 +5,18 @@ import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 
+
 function Activities (){
+
     const [input, setInput] = useState({
         name: "",
         duration: "",
         difficulty: 0,
         season: "",
-        paises: ""
+        paises: []
 
     });
-    const paises = useSelector(state => state.countries)
+    const Paises = useSelector(state => state.countries)
     const [errors, setErrors] = useState({});
 
     const handleSubmit = async(event)=>{
@@ -27,7 +29,7 @@ function Activities (){
                 duration: "",
                 difficulty: 0,
                 season: "",
-                paises: ""
+                paises: []
             })
         }else{
             alert ("Campos incompletos")
@@ -52,6 +54,20 @@ function Activities (){
             [event.target.name]: event.target.value
         })
     }
+    const handleClickSubmit = (event)=>{
+        event.preventDefault()
+        let countryS = document.querySelector("input[name='paises']")
+        if(countryS.value !== ""){
+            setInput({
+                ...input,
+                paises: [...input.paises, countryS.value]
+            })
+
+        }else{
+            alert ("selecciona un país válido")
+        }    
+    }
+
     return (
         <div className="ContainerForm">
             <h3>Crear Actividad</h3>
@@ -94,15 +110,21 @@ function Activities (){
                     <p>{errors.season && errors.season}</p>
                 </div>
                 <div>
-                    <label htmlFor=""><span>Pais(es)</span></label>
-                    <input list="count" name="paises" onChange={handleChange} />
+                    <label htmlFor=""><span>Pais(es):</span></label>
+                    {input.paises.length && input.paises.map(pais=>{
+                        return (
+                            <p key={pais}>{pais}</p>
+                        )
+                    })}
+                    <input list="count" name="paises" />
                     <datalist id="count">
-                        {paises.map((pais)=>{
+                        {Paises.map((pais)=>{
                             return (
                                 <option value={pais.ID} key={pais.ID}>{pais.name}</option>
                                 )
                         })}
                     </datalist>
+                    <input type="submit" onClick={handleClickSubmit}/>
                     <p>{errors.paises && errors.paises}</p>
                 </div>
                 <button>guardar</button>

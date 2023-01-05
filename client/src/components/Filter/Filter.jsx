@@ -2,20 +2,29 @@ import React from "react";
 import './filter.css';
 import { findCountry } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-import { getAllCountries } from "../../redux/actions";
+import { getAllCountries, filterByContinent, filterByName } from "../../redux/actions";
 
 function Filter (){
     const dispatch = useDispatch()
+    
 
     const handleClick = (event)=>{
         event.preventDefault();
-        const name = document.querySelector("div.divPr input[name='busqueda']").value
+        let name = document.querySelector("div.divPr input[name='busqueda']").value
         console.log(name);
         dispatch(findCountry(name))
     }
     const handleClick2 = (event)=>{
         event.preventDefault()
         dispatch(getAllCountries())
+    }
+    const handleFilterByContinent = (event)=>{
+        event.preventDefault();
+        dispatch(filterByContinent(event.target.value))
+    }
+    const handleFilterByName = (event)=>{
+        event.preventDefault()
+        dispatch(filterByName(event.target.value));
     }
     return(
         <div className="divPr">
@@ -33,14 +42,15 @@ function Filter (){
             </div>
             <div>
                 <h5>ordenar alfabéticamente</h5>
-                <select name="alfabético" >
-                    <option value="ascend">Ascendente</option>
-                    <option value="descend">descendente</option>
+                <select name="alfabético" onChange= {event => handleFilterByName(event)} >
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
                 </select>
             </div>
             <div>
                 <h5>Filtrar por continentes</h5>
-                <select name="continentes" >
+                <select name="continentes" onChange= {event => handleFilterByContinent(event)} >
+                    <option value="Todos">Todos los continentes</option>
                     <option value="Africa">Africa</option>
                     <option value="Asia">Asia</option>
                     <option value="Europe">Europa</option>

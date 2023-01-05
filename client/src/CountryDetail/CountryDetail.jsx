@@ -16,7 +16,7 @@ function CountryDetail (){
     console.log(countryD);
     return (
         <div className="DetallePais">
-            <h1>{countryD.name}</h1>
+            <h1>{countryD.ID}  {countryD.name}</h1>
             <img src={countryD.img_flag} alt="" />
             <h2>continente: {countryD.continents}</h2>
             <h3>Capital: {countryD.capital}</h3>

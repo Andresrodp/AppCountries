@@ -18,6 +18,13 @@ turismActivities.post('/', async (req, res)=>{
     }
 
 })
-
+turismActivities.get('/all', async(req, res)=>{
+    try {
+        const response = await Activities.findAll({include: {model:Countries}})
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+})
 
 module.exports = turismActivities;

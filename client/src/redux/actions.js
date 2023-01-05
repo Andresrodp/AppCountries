@@ -3,9 +3,14 @@ import axios from 'axios';
 
 export const GET_ALL_COUNTRIES = "GET_ALL_COUNTRIES";
 export const GET_COUNTRY_DETAIL = "GET_COUNTRY_DETAIL";
-export const CREATE_ACTIVITY = "CREATE_ACTIVITY";
+export const GET_ALL_ACTIVITIES = "GET_ALL_ACTIVITIES";
 export const FIND_COUNTRY = "FIND_COUNTRY";
-export const ERROR = "ERROR";
+export const FILTER_BY_CONTINENT = "FILTER_BY_CONTINENT";
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
+export const FILTER_BY_POPULATION = "FILTER_BY_POPULATION";
+export const FILTER_BY_ACTIVITY = "FILTER_BY_ACTIVITY";
+
+
 
 
 
@@ -23,13 +28,12 @@ export const getAllCountries = ()=>{
                 payload: countries
             })  
         } catch (error) {
-            dispatch({
-                type: ERROR,
-                payload: error
-            })
+            console.log(error.message);
+            alert(error.message)
+            }
         }
     }
-}
+
 export const findCountry = (name)=>{
     return async function (dispatch){
         try {
@@ -40,11 +44,54 @@ export const findCountry = (name)=>{
                 payload: resultSearch
             })
         } catch (error) {
-            
+            console.log(error.message);
+            alert (error.message)
         }
     }
 }
+export const getAllActivities = ()=>{
+    return async (dispatch)=>{
+        try {
+            const responseA = await axios.get("http://localhost:3001/activities/all")
+            const resultA = responseA.data
+            console.log(resultA);
+            dispatch({
+                type: GET_ALL_ACTIVITIES,
+                payload: resultA
+            })
+        } catch (error) {
+            console.log(error.message);
+            alert (error.message)
+        }
+    }
+}
+export const filterByActivity = (payload)=>{
+    console.log(payload);
+    return {
+        type: FILTER_BY_ACTIVITY,
+        payload
+    }
+}
+export const filterByContinent = (payload)=>{
+    return {
+        type: FILTER_BY_CONTINENT,
+        payload
+    }
+}
+export const filterByPopulation = (payload) => {
+    return {
+        type: FILTER_BY_POPULATION,
+        payload
+    }
+}
 
+export const filterByName = (payload)=>{
+    console.log(payload);
+    return {
+        type: FILTER_BY_NAME,
+        payload
+    }
+}
 export const getCountryDetail = (id) =>{
     return async function(dispatch){
         try {
@@ -55,10 +102,8 @@ export const getCountryDetail = (id) =>{
                 payload: detalles
             })
         } catch (error) {
-            dispatch({
-                type: ERROR,
-                payload: error
-            })
+            console.log(error.message);
+            alert(error.message)
         }
     }
 }
