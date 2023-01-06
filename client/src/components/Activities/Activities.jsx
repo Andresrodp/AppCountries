@@ -31,6 +31,11 @@ function Activities (){
                 season: "",
                 paises: []
             })
+        document.querySelector("form.Formulario input[name='name']").value = ""
+        document.querySelector("form.Formulario input[name='duration']").value = ""
+        document.querySelector("form.Formulario input[name='difficulty']").value = ""
+        document.querySelector("form.Formulario input[name='season']").value = ""
+        document.querySelector("form.Formulario input[name='paises']").value = ""
         }else{
             alert ("Campos incompletos")
         }
@@ -62,7 +67,7 @@ function Activities (){
                 ...input,
                 paises: [...input.paises, countryS.value]
             })
-
+        document.querySelector("form.Formulario input[name='paises']").value = ""
         }else{
             alert ("selecciona un país válido")
         }    
@@ -70,23 +75,23 @@ function Activities (){
 
     return (
         <div className="ContainerForm">
-            <h3>Crear Actividad</h3>
+            <h3 className="tituloForm">Crear Actividad</h3>
             <form onSubmit={handleSubmit} className="Formulario">
                 <div>
-                    <label htmlFor="nombre"><span>Nombre de actividad</span></label>
-                    <input type="text" name="name" onChange={handleChange}  />
-                    <p>{errors.name && errors.name}</p>
+                    <label htmlFor="nombre"><span className="spanForm">Nombre de actividad:</span></label>
+                    <input type="text" className="inputsForm" name="name" onChange={handleChange}  />
+                    <p className="pError">{errors.name && errors.name}</p>
                 </div>
 
                 <div>
-                    <label htmlFor="duracion"><span>Duración</span></label>
-                    <input type="text" name="duration" onChange={handleChange} />
-                    <p>{errors.duration && errors.duration}</p>
+                    <label htmlFor="duracion"><span className="spanForm">Duración:</span></label>
+                    <input type="text" className="inputsForm" name="duration" onChange={handleChange} />
+                    <p className="pError">{errors.duration && errors.duration}</p>
                 </div>
 
                 <div>
-                    <label htmlFor=""><span>Dificultad</span></label>
-                        <input list="niveles" name="difficulty" onChange={handleChange} />
+                    <label htmlFor=""><span className="spanForm">Dificultad:</span></label>
+                        <input list="niveles" className="inputsForm" name="difficulty" onChange={handleChange} />
                         <datalist id="niveles">
                             <option value="1"></option>
                             <option value="2"></option>
@@ -94,12 +99,12 @@ function Activities (){
                             <option value="4"></option>
                             <option value="5"></option>
                         </datalist>
-                    <p>{errors.difficulty && errors.difficulty}</p>
+                    <p className="pError">{errors.difficulty && errors.difficulty}</p>
                 </div>
 
                 <div>
-                    <label htmlFor=""><span>Temporada</span></label>
-                    <input list="temp" name="season" onChange={handleChange} />
+                    <label htmlFor=""><span className="spanForm">Temporada:</span></label>
+                    <input list="temp" className="inputsForm" name="season" onChange={handleChange} />
                         <datalist id="temp">
                             <option value="Primavera"></option>
                             <option value="Verano"></option>
@@ -107,16 +112,18 @@ function Activities (){
                             <option value="Invierno"></option>
                             <option value="Todas"></option>
                         </datalist>
-                    <p>{errors.season && errors.season}</p>
+                    <p className="pError">{errors.season && errors.season}</p>
                 </div>
                 <div>
-                    <label htmlFor=""><span>Pais(es):</span></label>
-                    {input.paises.length && input.paises.map(pais=>{
-                        return (
-                            <p key={pais}>{pais}</p>
-                        )
-                    })}
-                    <input list="count" name="paises" />
+                    <label htmlFor=""><span className="spanForm">Pais(es):</span></label>
+                    <div className="selectCountries">
+                        {input.paises.length && input.paises.map(pais=>{
+                            return (
+                                <p className="preSelect" key={pais}>{pais}</p>
+                            )
+                        })}
+                    </div>
+                    <input list="count" className="inputsForm" name="paises" />
                     <datalist id="count">
                         {Paises.map((pais)=>{
                             return (
@@ -124,10 +131,10 @@ function Activities (){
                                 )
                         })}
                     </datalist>
-                    <input type="submit" onClick={handleClickSubmit}/>
-                    <p>{errors.paises && errors.paises}</p>
+                    <input type="submit" className="btnAddCountry" onClick={handleClickSubmit}/>
+                    <p className="pError">{errors.paises && errors.paises}</p>
                 </div>
-                <button>guardar</button>
+                <button className="finalSubmit" disabled={Object.keys(errors).length}>guardar</button>
             </form>
         </div>
     )

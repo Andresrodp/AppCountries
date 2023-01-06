@@ -1,7 +1,98 @@
-.containerCountries {
-    background-color: brown;
-    width: 80%;
-    padding: 3rem;
+.containerMain {
+    background-image: url("../LandingPage/Imagen_background.jpg");
+    background-size: cover;
+    width: 100%;
+    padding: 1rem;
     margin-top: 4rem;
     align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+}
+.containerFyC{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.divPaginado{
+    margin-top: 0;
+    position:static;
+    justify-content: center;
+    width: 80%;
+    margin-bottom: 10px;
+    align-self: flex-end;
+    margin-right: 1.5rem;
+}
+.divFiltros{
+    width: 18%;
+    background-color: transparent;
+    margin-right: 10px;
+    padding: 0.5rem;
+    justify-self: center;
+    margin-top: 0.5rem;
+    border: 5px;
+    border-style:solid;
+    border-color: aliceblue;
+    border-radius: 8px;
+}
+
+.divCountries{
+    width: 80%;
+    background-color: transparent;
+    padding: 1rem;
+    display: block;
+    margin-left: 2rem;
+}
+
+.divHijoF{
+    background-color: #457f8b8e;
+    border-style: groove;
+    border: 5px;
+    border-radius: 5px;
+    border-color: #66AABA;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:hsl(0, 4%, 5%);
+}
+.divPr{
+    background-color: #457f8b8e;
+    border-style: groove;
+    border: 5px;
+    border-radius: 5px;
+    border-color: #66AABA;
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:hsl(0, 4%, 5%);
+}
+
+.btnAllCountries{
+    background-color: #99483D;
+    border-radius: 5px;
+    padding: 2px;
+    font-size: 18px;
+    font-family: 'Trebuchet MS', sans-serif;
+    border-color: #462b27;
+}
+.selectF{
+    background-color: transparent;
+    border: 2px;
+    border-color: aliceblue;
+    border-style: solid;
+    border-radius: 4px;
+}
+.btnBusqueda{
+    background-color: aliceblue;
+    border: 3px;
+    border-color: aliceblue;
+    border-style:ridge;
 }

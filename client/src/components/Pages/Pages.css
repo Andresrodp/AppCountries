@@ -1,8 +1,13 @@
-.PagesNav{
-    width: 100%;
-    background-color: aqua;
-
-}
 .paginas{
     margin-bottom: 5px;
+}
+.btnPages{
+    background-color: rgba(177, 212, 241, 0.753);
+    margin: 1px;
+    border-radius: 3px;
+    width: 2rem;
+    height: 2rem;
+    font-family:'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
 }

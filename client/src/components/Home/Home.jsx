@@ -27,24 +27,25 @@ function Home () {
 
     const handleClick = (event)=>{
         event.preventDefault();
-        let name = document.querySelector("div.divPr input[name='busqueda']").value
+        let name = document.querySelector("div.divPr input[name='busqueda']").value;
         console.log(name);
-        dispatch(findCountry(name))
+        dispatch(findCountry(name));
+        document.querySelector("div.divPr input[name='busqueda']").value = "";
     }
     const handleClick2 = (event)=>{
-        event.preventDefault()
-        dispatch(getAllCountries())
+        event.preventDefault();
+        dispatch(getAllCountries());
     }
     const handleFilterByContinent = (event)=>{
         event.preventDefault();
-        dispatch(filterByContinent(event.target.value))
+        dispatch(filterByContinent(event.target.value));
         setCurrentPage(1);
     }
     const handleFilterByName = (event)=>{
-        event.preventDefault()
+        event.preventDefault();
         dispatch(filterByName(event.target.value));
         setCurrentPage(1);
-        setOrden (`Alfabético ${event.target.value}`)
+        setOrden (`Alfabético ${event.target.value}`);
     }
     const handleFilterByPopulation = (event)=>{
         event.preventDefault()
@@ -73,66 +74,67 @@ function Home () {
     },[dispatch])
     
         return(
-            <div className= "containerCountries" >
-                <div>
+            <div className= "containerMain" >
+                <div className="divPaginado">
                     <Pages
                         countriesPerPage={countriesPerPage}
                         countries={countries.length}
                         paginas = {paginas}
                     />
                 </div>
-                <div>
-                    <div className="divPr">
-                        <h4>Buscar País:</h4>
-                        <input type="text" name="busqueda" />
-                        <button onClick={handleClick}>buscar</button>
-                    </div>
-                    <div>
-                        <h5>ordenar por población</h5>
-                            <select name="poblacion" onChange={event => handleFilterByPopulation(event)}>
-                                <option value="asc">Ascendente</option>
-                                <option value="desc">Descendente</option>
+                <div className="containerFyC">
+                    <div className="divFiltros">
+                        <div className="divPr">
+                            <h4>Buscar País:</h4>
+                            <input type="text" name="busqueda" />
+                            <button className="btnBusqueda" onClick={handleClick}>buscar</button>
+                        </div>
+                        <div className="divHijoF">
+                            <h5>ordenar por población</h5>
+                                <select name="poblacion" className="selectF" onChange={event => handleFilterByPopulation(event)}>
+                                    <option value="asc">Ascendente</option>
+                                    <option value="desc">Descendente</option>
+                                </select>
+                        </div>
+                        <div className="divHijoF">
+                            <h5>ordenar alfabéticamente</h5>
+                            <select name="alfabético" className="selectF" onChange= {event => handleFilterByName(event)} >
+                                <option value="A-Z">A-Z</option>
+                                <option value="Z-A">Z-A</option>
                             </select>
+                        </div>
+                        <div className="divHijoF">
+                            <h5>Filtrar por continentes</h5>
+                            <select name="continentes" className="selectF" onChange= {event => handleFilterByContinent(event)} >
+                                <option value="Todos">Todos los continentes</option>
+                                <option value="Africa">Africa</option>
+                                <option value="Asia">Asia</option>
+                                <option value="Europe">Europa</option>
+                                <option value="Oceania">Oceanía</option>
+                                <option value="North America">América del Norte</option>
+                                <option value="South America">América del Sur</option>
+                            </select>
+                        </div>
+                        <div className="divHijoF">
+                            <h5>Filtrar por Actividad Turistica:</h5>
+                            <select name="actividades" className="selectF" onChange={event =>handleFilterByActivity(event)}>
+                                <option value="Todos">Todos</option>
+                                {activities.map(activity=>{
+                                    return(
+                                        <option value={activity.name} key={activity.ID}>{activity.name}</option>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        <button className="btnAllCountries" onClick={handleClick2}>Cargar todos los paises</button>
                     </div>
-                    <div>
-                        <h5>ordenar alfabéticamente</h5>
-                        <select name="alfabético" onChange= {event => handleFilterByName(event)} >
-                            <option value="A-Z">A-Z</option>
-                            <option value="Z-A">Z-A</option>
-                        </select>
+                    <div className="divCountries">
+                        {currentCountries.map((country)=>{return <Country 
+                            key={country.ID}
+                            country={country}
+                        />})}
                     </div>
-                    <div>
-                        <h5>Filtrar por continentes</h5>
-                        <select name="continentes" onChange= {event => handleFilterByContinent(event)} >
-                            <option value="Todos">Todos los continentes</option>
-                            <option value="Africa">Africa</option>
-                            <option value="Asia">Asia</option>
-                            <option value="Europe">Europa</option>
-                            <option value="Oceania">Oceanía</option>
-                            <option value="North America">América del Norte</option>
-                            <option value="South America">América del Sur</option>
-                        </select>
-                    </div>
-                    <div>
-                        <h5>Filtrar por Actividad Turistica:</h5>
-                        <select name="actividades" onChange={event =>handleFilterByActivity(event)}>
-                            <option value="Todos">Todos</option>
-                            {activities.map(activity=>{
-                                return(
-                                    <option value={activity.name} key={activity.ID}>{activity.name}</option>
-                                )
-                            })}
-                        </select>
-                    </div>
-                    <button onClick={handleClick2}>Cargar todos los paises</button>
                 </div>
-                <div>
-                    {currentCountries.map((country)=>{return <Country 
-                        key={country.ID}
-                        country={country}
-                    />})}
-                </div>
-                
             </div>
         )
 }

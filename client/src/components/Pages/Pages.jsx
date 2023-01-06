@@ -12,7 +12,7 @@ function Pages({ countriesPerPage, countries, paginas }) {
         <div className="PagesNav">
             <nav>
                 { pagesNumbers && pagesNumbers.map(number => (
-                    <button onClick={()=>paginas(number)} key={number}>{number}</button>
+                    <button className="btnPages" onClick={()=>paginas(number)} key={number}>{number}</button>
                 ))}
             </nav>
         </div>
